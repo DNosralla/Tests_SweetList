@@ -1,0 +1,69 @@
+﻿<br />
+<div class="row">
+    
+    <div class="col-md-offset-2 col-md-8">
+        
+        <div class="panel panel-default">
+            <div class="panel-heading">Add new customer</div>
+            <div class="panel-body">
+                <form action="" method="post" name="form" class="form-horizontal">
+                    
+                    <div class="form-group" ng-class="{'has-danger' : !form.name.$valid}">
+                        <label for="name" class="col-sm-2 control-label">Name</label>
+                        <div class="input-group">
+                            <input class="form-control" name="name" ng-class="{'form-control-danger' : !form.name.$valid}" placeholder="" type="text" ng-model="name" required ng-minlength="3" maxlength="30" data-server-validate>
+                        </div>
+                        <div ng-messages="form.name.$error" role="alert">
+                            <div ng-messages-include="error-messages"></div>
+                            <div ng-message="server">
+                                <div data-ng-repeat="errorMessage in form.name.$error.server">{{errorMessage}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" ng-class="{'has-danger' : !form.country.$valid}">
+                        <label for="country" class="col-sm-2 control-label">Country</label>
+                        <div class="input-group">
+                            <select class="form-control" name="country" ng-class="{'form-control-danger' : !form.country.$valid}" ng-model="countryId" required data-server-validate>
+                                <option ng-repeat="country in countryList" value="{{country.id}}">{{country.name}}</option>
+                            </select>
+
+                        </div>
+                        <div ng-messages="form.country.$error" role="alert">
+                            <div ng-messages-include="error-messages"></div>
+                            <div ng-message="server">
+                                <div data-ng-repeat="errorMessage in form.country.$error.server">{{errorMessage}}</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="button" class="btn btn-default" ng-disabled="!form.$valid || saving" ng-click="newCustomer()">New</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">Customer List</div>
+             <table class="table table-condensed table-striped table-bordered">
+                 <thead>
+                     <tr>
+                         <th>Name</th>
+                         <th>Country</th>
+                     </tr>
+                 </thead>
+                 <tbody>
+                     <tr ng-repeat="customer in customerList">
+                         <td>{{customer.name}}</td>
+                         <td>{{customer.country.name}}</td>
+                     </tr>
+                 </tbody>
+             </table>
+        </div>
+
+    </div>
+
+</div>
