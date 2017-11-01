@@ -28,7 +28,9 @@ app.controller('mainCtrl', function ($scope, $http, $q, $route) {
             $scope.customerList = values[1].data;
 
             $scope.loading = false;
-        });
+            }, function (error) {
+                alert("Error loading customer data");
+            });
     }
     
     
